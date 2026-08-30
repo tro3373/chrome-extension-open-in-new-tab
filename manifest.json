@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Open In New Tab",
+  "version": "1.0.0",
+  "description": "Open links clicked on github.com in a new tab.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*",
+        "https://gist.github.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
