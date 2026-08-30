@@ -2,7 +2,7 @@
 'use strict';
 
 // true: 裏タブで開いて現在のタブに留まる / false: 新規タブへフォーカスを移す
-const OPEN_IN_BACKGROUND = true;
+const OPEN_IN_BACKGROUND = false;
 
 const isPlainLeftClick = (e) =>
   e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey;
