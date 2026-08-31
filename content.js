@@ -1,4 +1,4 @@
-// github.com 上のリンク左クリックを、新規タブで開くように差し替える。
+// github.com 上のマークダウン本文内のリンク左クリックを、新規タブで開くように差し替える。
 'use strict';
 
 // true: 裏タブで開いて現在のタブに留まる / false: 新規タブへフォーカスを移す
@@ -18,6 +18,11 @@ const findAnchor = (e) => {
 const stripHash = (url) => url.origin + url.pathname + url.search;
 
 const shouldHijack = (a) => {
+  // マークダウンとして描画された本文の中のリンクだけを対象にする。
+  // README / .md の blob 表示 / wiki は article.markdown-body、
+  // issue・PR のコメント本文は div.comment-body.markdown-body に入る。
+  // ナビゲーションやファイル一覧、issue 一覧には .markdown-body が無いので素通りする。
+  if (!a.closest('.markdown-body')) return false;
   // 既に別タブ/別ウィンドウ指定のものはブラウザに任せる
   if (a.target && a.target !== '_self') return false;
   // ダウンロードリンクはタブを開いても意味がない
