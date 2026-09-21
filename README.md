@@ -41,6 +41,7 @@ github.com / gist.github.com 上のリンクを左クリックしたとき、新
 - `version` が Chrome の形式 (ドット区切りの整数 1〜4 個、各 0〜65535、先頭ゼロなし、すべて 0 は不可) に合わないと `make` と `make bump` は失敗する
 - `dist/` には最後に作った zip だけが残る
 - `jq` と `zip` が要る
+- `make test` で上の振る舞いを確かめる (`tests/package_test.sh`。使い捨てのコピー上で動く)
 
 ### zip に入るファイル
 

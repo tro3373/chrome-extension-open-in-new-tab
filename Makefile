@@ -6,7 +6,7 @@ FILES   = manifest.json background.js content.js $(wildcard icons/*.png README.m
 CHECK_VERSION = jq -e '.version | test("^(0|[1-9][0-9]{0,4})(\\.(0|[1-9][0-9]{0,4})){0,3}$$") and (split(".") | map(tonumber) | all(. <= 65535) and any(. > 0))' manifest.json >/dev/null \
 	|| { echo "manifest.json: invalid version '$$(jq -r .version manifest.json)'" >&2; exit 1; }
 
-.PHONY: build bump clean
+.PHONY: build bump clean test
 
 build:
 	@$(CHECK_VERSION)
@@ -23,3 +23,6 @@ bump:
 
 clean:
 	rm -rf dist
+
+test:
+	bash tests/package_test.sh
